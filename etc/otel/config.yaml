@@ -1,0 +1,17 @@
+receivers:
+  syslog:
+    protocol: rfc3164
+    tcp:
+      listen_address: "0.0.0.0:514"
+    udp:
+      listen_address: "0.0.0.0:514"
+
+exporters:
+  debug:
+    verbosity: detailed
+
+service:
+  pipelines:
+    logs:
+      receivers: [syslog]
+      exporters: [debug]

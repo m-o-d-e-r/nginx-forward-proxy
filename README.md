@@ -12,22 +12,14 @@ This is a simple **HTTP forward proxy** that runs under **Nginx**.
 
 ## Components
 
-- **Nginx** — HTTP proxy server
-- **OpenResty** — installed and available for extensions
-- **daemontools** — service supervision
-
-## Build
-
-To build the container you can use such command:
-
-```bash
-docker build -t nginx-forward-proxy .
-```
+- **nginx** — HTTP proxy server
+- **otel** — sending logs to the Splunk (for now just to the stdout)
+- **rsyslog** — collecting logs from the proxy
 
 ## Run
 
 Launching proxy locally:
 
 ```bash
-docker run --rm --name nginx-forward-proxy nginx-forward-proxy
+docker compose up
 ```

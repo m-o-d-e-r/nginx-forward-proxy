@@ -1,0 +1,38 @@
+
+networks:
+  nginx-forward-proxy:
+    driver: bridge
+
+
+services:
+  otel:
+    container_name: otel
+    image: otel/opentelemetry-collector-contrib:0.141.0
+    command: ["--config", "/etc/otelcol/config.yaml"]
+    volumes:
+      - ./etc/otel/config.yaml:/etc/otelcol/config.yaml
+    networks:
+      - nginx-forward-proxy
+
+  rsyslog:
+    container_name: rsyslog
+    build:
+      context: .
+      dockerfile: Dockerfile.rsyslog
+    networks:
+      - nginx-forward-proxy
+    depends_on:
+      - otel
+
+  nginx-forward-proxy:
+    container_name: nginx-forward-proxy
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - nginx-forward-proxy
+    ports:
+      - 8080:80
+    depends_on:
+      - rsyslog
+ 
