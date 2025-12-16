@@ -14,7 +14,6 @@ This is a simple **HTTP forward proxy** that runs under **Nginx**.
 
 - **nginx** — HTTP proxy server
 - **otel** — sending logs to the Splunk (for now just to the stdout)
-- **rsyslog** — collecting logs from the proxy
 
 ## Run
 

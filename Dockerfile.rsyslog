@@ -1,9 +1,0 @@
-FROM debian:12
-
-
-RUN apt update && \
-    apt install -y rsyslog
-
-COPY etc/rsyslog/rsyslog.conf /etc/rsyslog.conf
-
-CMD ["rsyslogd", "-n"]

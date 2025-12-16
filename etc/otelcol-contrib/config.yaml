@@ -1,0 +1,15 @@
+receivers:
+  filelog:
+    include:
+    - /var/log/nginx/access.log
+    - /var/log/nginx/error.log
+
+exporters:
+  debug:
+    verbosity: detailed
+
+service:
+  pipelines:
+    logs:
+      receivers: [filelog]
+      exporters: [debug]
